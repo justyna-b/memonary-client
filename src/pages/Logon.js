@@ -13,6 +13,9 @@ function Logon () {
         <a className='App-link' href='/register'>
           Zarejestruj się
         </a>
+        <a className='App-link' href='/test'>
+          rxjs
+        </a>
       </header>
     </div>
   )
