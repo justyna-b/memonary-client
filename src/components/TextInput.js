@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-function TextInput ({placeholder}) {
+function TextInput ({placeholder, onChange}) {
     return (
-        <input placeholder={placeholder}/>
+        <input placeholder={placeholder} onChange={onChange}/>
     )
 }
 

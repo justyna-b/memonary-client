@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Logon from './pages/Logon.js'
 import Registration from './pages/Registration.js'
 import Polygon from './pages/Polygon'
+import Home from './pages/Home.js'
 
 class App extends React.Component {
   render () {
@@ -15,6 +16,7 @@ class App extends React.Component {
             <Route path='/logon' component={Logon} />
             <Route path='/register' component={Registration} />
             <Route path='/test' component={Polygon} />
+            <Route path='/home' component={Home} />
           </Switch>
         </BrowserRouter>
       </div>

@@ -1,23 +1,81 @@
 import '../App.css'
-import React, { useState } from 'react'
+import React from 'react'
 
-import TextInput from '../components/TextInput'
+class Registration extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      name: '',
+      surname: '',
+      email: '',
+      username: '',
+      password: '',
+      repPassword: ''
+    }
+  }
 
-function Registration () {
-  return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1> Memonary -rejestracja</h1>
-        <TextInput placeholder='imię' />
-        <TextInput placeholder='nazwisko' />
-        <TextInput placeholder='email' />
-        <TextInput placeholder='nazwa uzytkownika' />
-        <TextInput placeholder='haslo' />
-        <TextInput placeholder='powtorz haslo' />
-        <button>zarejestruj mnie</button>
-      </header>
-    </div>
-  )
+  onChange = event => {
+    event.preventDefault()
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  onClickHandler = () => {
+    console.log('hej')
+    fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: this.state.name,
+        surname: this.state.surname,
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        let usersDiv = document.getElementById('user')
+        usersDiv.innerHTML += data.msg + '</br>'
+      })
+  }
+
+  render () {
+    return (
+      <div className='App'>
+        <header className='App-header'>
+          <h1> Memonary -rejestracja!!!!!</h1>
+          <div id='user' />
+          <input placeholder='imię' onChange={this.onChange} name='name' />
+          <input
+            placeholder='nazwisko'
+            onChange={this.onChange}
+            name='surname'
+          />
+          <input placeholder='email' onChange={this.onChange} name='email' />
+          <input
+            placeholder='nazwa uzytkownika'
+            onChange={this.onChange}
+            name='username'
+          />
+          <input placeholder='haslo' onChange={this.onChange} name='password' />
+          <input
+            placeholder='powtorz haslo'
+            onChange={this.onChange}
+            name='repPassword'
+          />
+          <button onClick={this.onClickHandler}>zarejestruj mnie</button>
+          <div>
+            <a className='App-link' href='/logon'>logowanie</a>
+          </div>
+        </header>
+      </div>
+    )
+  }
 }
 
 export default Registration
