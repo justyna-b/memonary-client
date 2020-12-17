@@ -1,6 +1,5 @@
 import React from 'react'
 
-import '../App.css'
 import { Subject } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
 

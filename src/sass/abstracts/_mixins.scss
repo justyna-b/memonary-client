@@ -1,0 +1,8 @@
+@mixin clearfix {
+    &::after {
+        //empty,because I do not want to show it on the page
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

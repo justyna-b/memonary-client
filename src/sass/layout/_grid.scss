@@ -1,0 +1,25 @@
+.grid-row {
+  max-width: 100%;
+  margin: 0 auto;
+
+  @include clearfix;
+
+  &--col-1-of-2 {
+    position: relative;
+  }
+
+  &--col-1-of-3 {
+    width: 100%;
+    float: left;
+  }
+
+  &--col-1-of-7 {
+    width: calc(100% / 7);
+    float: left;
+  }
+
+  &--col-6-of-7 {
+    width: calc(((100% / 7) * 6));
+    float: left;
+  }
+}

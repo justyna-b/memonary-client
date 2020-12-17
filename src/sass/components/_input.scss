@@ -1,0 +1,14 @@
+@import './abstracts/variables';
+
+.input {
+  border-radius: 10px;
+  border: none;
+  padding: $very-small-space;
+  width: 100%;
+  border: 1px solid #dddddd;
+
+  &::placeholder {
+    color: #878787;
+    border-radius: 10px;
+  }
+}

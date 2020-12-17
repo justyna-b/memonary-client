@@ -1,7 +1,7 @@
-import '../App.css'
 import React from 'react'
 
 import AuthService from '../logic/AuthService'
+import globeII from '../assets/globeII.png'
 
 class Logon extends React.Component {
   constructor (props) {
@@ -10,7 +10,7 @@ class Logon extends React.Component {
       email: '',
       password: ''
     }
-    this.Auth = new AuthService() //
+    this.Auth = new AuthService()
   }
 
   handleSubmit = event => {
@@ -37,29 +37,59 @@ class Logon extends React.Component {
 
   render () {
     return (
-      <div className='App'>
-        <header className='App-header'>
-          <h1> Memonary -productive learn words- logon</h1>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              placeholder='email'
-              name='email'
-              onChange={this.handleChange}
-            />
-            <input
-              placeholder='hasło'
-              name='password'
-              onChange={this.handleChange}
-            />
-            <button type='submit'>zaloguj</button>
-          </form>
-          <a className='App-link' href='/register'>
-            Zarejestruj się
-          </a>
-          <a className='App-link' href='/test'>
-            rxjs
-          </a>
-        </header>
+      <div className='logon-cmp'>
+        <body>
+          <header className='logon-cmp--container'>
+            <div className='grid-row--col-1-of-2 logon-cmp--container__logon'>
+              <div>
+                <div className='logon-cmp--container__logon__form'>
+                  <h1 className='logon--title'> Memonary</h1>
+                  <div>
+                    <form onSubmit={this.handleSubmit}>
+                      <div>
+                        <input
+                          placeholder='email'
+                          name='email'
+                          onChange={this.handleChange}
+                          className='input logon--input'
+                        />
+                      </div>
+                      <div className='logon--input'>
+                        <input
+                          placeholder='hasło'
+                          name='password'
+                          onChange={this.handleChange}
+                          type='password'
+                          className='input logon--input'
+                        />
+                      </div>
+                      <button
+                        type='submit'
+                        className='button button-submit button-log'
+                      >
+                        zaloguj
+                      </button>
+                    </form>
+                    <div className='vertical-space-between'>
+                      <a href='#!' className='text-link text-pwd'>
+                        Nie pamiętasz hasła?
+                      </a>
+                    </div>
+                    <hr className='horizontal-line'/>
+                    <div>
+                      <button className='button button-submit button-reg'>
+                        <a href='/register' className='text-button text-link'>
+                          Zarejestruj się
+                        </a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='grid-row--col-1-of-2 logon-cmp--container__photo'></div>
+          </header>
+        </body>
       </div>
     )
   }

@@ -1,0 +1,54 @@
+@import '../abstracts/variables';
+
+.button {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    font-size: $font-size-button;
+    box-shadow: $button-shadow-link;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: $button-shadow-hover;
+  }
+
+  &:active {
+    transform: translateY(-0.2rem);
+    box-shadow: $button-shadow-active;
+  }
+}
+
+.button-submit {
+    box-shadow: $shadow-link-light;
+    text-transform: uppercase;
+    padding: $very-small-space;
+    border-radius: 10px;
+    &:hover {
+      transform: translateY(-0.3rem);
+      box-shadow: $shadow-hover-light;
+    }
+    &:active {
+      transform: translateY(-0.2rem);
+      box-shadow: $shadow-active-light;
+    }
+    border: none;
+    color: white;
+  }
+
+
+  .button-log {
+      background-color: $yellow-dark;
+      width: 100%;
+      font-size: $font-size-button;
+      font-family: $nunito-bold-bold;
+  }
+
+  .button-reg {
+      background-color: $blue-light;
+      font-family: $nunito-bold-bold;
+      font-size: $font-size-button;
+      margin: $typical-margin;
+  }

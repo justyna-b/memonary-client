@@ -1,0 +1,9 @@
+@import '../abstracts/variables';
+
+.small-margin {
+  margin-bottom: $small-space;
+}
+
+.vertical-space-between {
+  margin: $typical-margin;
+}

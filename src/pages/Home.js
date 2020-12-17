@@ -47,11 +47,13 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        {this.state.auth ? '' : <Redirect to='/logon' />}
-        <div>welcome</div>
-        {localStorage.getItem('id_token')}
-        <div>{this.state.name}</div>
-        <button onClick={this.onClickLogOut}>logout</button>
+        <body>
+          {this.state.auth ? '' : <Redirect to='/logon' />}
+          <div>welcome</div>
+          {/* {localStorage.getItem('id_token')} */}
+          <div>{this.state.name}</div>
+          <button onClick={this.onClickLogOut}>logout</button>
+        </body>
       </div>
     )
   }
