@@ -1,0 +1,11 @@
+@import '../abstracts/variables';
+
+.reg-button {
+    font-family: $nunito-extra-bold !important;
+}
+
+#user {
+    color: $error;
+    font-family: $nunito-bold-bold;
+    text-transform: uppercase;
+}

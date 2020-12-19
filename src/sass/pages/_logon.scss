@@ -1,10 +1,15 @@
 @import './abstracts/variables';
+@import '../abstracts/mixins';
 
 .logon-cmp {
   padding: $small-space;
   background-color: $very-light-grey-bcg;
   height: 100vh;
+  // height: 50vw;
   font-size: 2rem;
+  @include respond(phone) {
+    padding: 0;
+  }
 
   &--container {
     height: 90vh;
@@ -12,6 +17,11 @@
     border-radius: 100px;
     position: absolute;
     width: 96%;
+    @include respond(phone) {
+      border-radius: 0px;
+      height: 100vh;
+      width: 100%;
+    }
 
     &__logon {
       left: 50%;
@@ -19,6 +29,12 @@
       position: absolute;
       width: 50%;
       margin-top: calc(20vh - 3rem);
+      @include respond(phone) {
+        left: 0;
+        width: 100%;
+        margin-top: 0;
+        padding: 5rem;
+      }
 
       &__form {
         background-color: #f0f2f5;
@@ -29,6 +45,10 @@
         padding: 20px;
         box-shadow: $normal-shadow;
         text-align: center;
+        @include respond(phone) {
+          height: 80vh;
+          width: 90%;
+        }
       }
     }
     &__photo {
@@ -37,6 +57,9 @@
       height: 100%;
       width: 50%;
       border-radius: 100px 0px 0px 100px;
+      @include respond(phone) {
+        display: none;
+      }
     }
   }
 }

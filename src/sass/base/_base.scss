@@ -1,15 +1,29 @@
+@import '../abstracts/mixins';
+
 *,
 *::after,
 *::before {
   margin: 0px;
   padding: 0px;
   box-sizing: inherit;
-  letter-spacing: .25rem;
+  letter-spacing: 0.25rem;
 }
 
 html {
   //defines what one rem is
   font-size: 62.5%;
+
+  @include respond(phone) {
+    font-size: 56.25%; //1rem = 9px
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%; //1 rem = 8 px
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1 rem = 12px
+  }
 }
 
 body {

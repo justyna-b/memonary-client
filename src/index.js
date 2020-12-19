@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 //
 import './fonts/nunito/Nunito-SemiBold.ttf';
 import './fonts/nunito/Nunito-Bold.ttf';
+import './fonts/nunito/Nunito-ExtraBold.ttf';
 
 
 

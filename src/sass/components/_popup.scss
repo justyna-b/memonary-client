@@ -1,0 +1,41 @@
+@import './abstracts/variables';
+
+.popup {
+  height: 100vh;
+  width: 100%;
+  //so it does not move as we scroll
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(black, 0.8);
+  z-index: 9999;
+
+  &__content-reg {
+    @include absCenter;
+    width: 35%;
+    height: 53rem;
+    background-color: $very-light-grey-bcg;
+    box-shadow: 0 2rem 4rem rgba(black, 0.8);
+    border-radius: 5px;
+    padding: 2rem;
+    text-align: center;
+
+    &--close {
+      color: grey;
+      text-decoration: none;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+    }
+
+    &--logo {
+      width: 25%;
+      height: auto;
+    }
+
+    &--input {
+      margin: $small-space 1rem $small-space 1rem;
+    }
+  }
+}

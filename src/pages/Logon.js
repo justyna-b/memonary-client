@@ -2,13 +2,16 @@ import React from 'react'
 
 import AuthService from '../logic/AuthService'
 import globeII from '../assets/globeII.png'
+import Popup from '../components/Popup'
+import Registration from './Registration'
 
 class Logon extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      register: false
     }
     this.Auth = new AuthService()
   }
@@ -31,6 +34,11 @@ class Logon extends React.Component {
     })
   }
 
+  handleRegister = () => {
+    // return <Popup/>
+    this.setState({ register: true })
+  }
+
   async componentWillMount () {
     if (await this.Auth.loggedIn()) this.props.history.replace('/home')
   }
@@ -40,6 +48,7 @@ class Logon extends React.Component {
       <div className='logon-cmp'>
         <body>
           <header className='logon-cmp--container'>
+            {this.state.register ? <Registration /> : null}
             <div className='grid-row--col-1-of-2 logon-cmp--container__logon'>
               <div>
                 <div className='logon-cmp--container__logon__form'>
@@ -65,7 +74,7 @@ class Logon extends React.Component {
                       </div>
                       <button
                         type='submit'
-                        className='button button-submit button-log'
+                        className='button button-submit button-accept'
                       >
                         zaloguj
                       </button>
@@ -75,12 +84,13 @@ class Logon extends React.Component {
                         Nie pamiętasz hasła?
                       </a>
                     </div>
-                    <hr className='horizontal-line'/>
+                    <hr className='horizontal-line' />
                     <div>
-                      <button className='button button-submit button-reg'>
-                        <a href='/register' className='text-button text-link'>
-                          Zarejestruj się
-                        </a>
+                      <button
+                        className='button button-submit button-reg'
+                        onClick={this.handleRegister}
+                      >
+                        Zarejestruj się
                       </button>
                     </div>
                   </div>

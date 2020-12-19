@@ -8,3 +8,8 @@
     font-family: 'nunito-bold-bold';
     src: local('nunito-bold-bold'), local('Nunito Bold Bold'), url('../../fonts/nunito/Nunito-Bold.ttf') format('truetype');
   }
+
+  @font-face {
+    font-family: 'nunito-extra-bold';
+    src: local('nunito-extra-bold'), local('Nunito Extra Bold'), url('../../fonts/nunito/Nunito-ExtraBold.ttf') format('truetype');
+  }

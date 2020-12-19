@@ -34,12 +34,27 @@
       transform: translateY(-0.2rem);
       box-shadow: $shadow-active-light;
     }
+
+    &:disabled {
+      background-color: $text-grey-light;
+      box-shadow: none;
+      
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+
+      &:active {
+        transform: none;
+        box-shadow: none;
+      }
+    }
     border: none;
     color: white;
   }
 
 
-  .button-log {
+  .button-accept {
       background-color: $yellow-dark;
       width: 100%;
       font-size: $font-size-button;
