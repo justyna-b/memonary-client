@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import AuthService from '../logic/AuthService'
+import NavbarHeader from '../layout/NavbarHeader'
 
 class Home extends React.Component {
   constructor (props) {
@@ -49,6 +50,7 @@ class Home extends React.Component {
       <div>
         <body>
           {this.state.auth ? '' : <Redirect to='/logon' />}
+          <NavbarHeader/>
           <div>welcome</div>
           {/* {localStorage.getItem('id_token')} */}
           <div>{this.state.name}</div>

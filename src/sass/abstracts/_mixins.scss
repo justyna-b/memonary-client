@@ -14,22 +14,34 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin verticallyCenter {
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: relative;
+}
 @mixin respond($breakpoint) {
-
   @if $breakpoint == phone {
-      @media (max-width: 37.5em) { @content } //600px
-  };
+    @media (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
 
   @if $breakpoint == tab-port {
-      @media (max-width: 56.25em) { @content } //900px
-  };
+    @media (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
 
   @if $breakpoint == tab-land {
-      @media (max-width: 75em) { @content } // 1200px
-  };
+    @media (max-width: 75em) {
+      @content;
+    } // 1200px
+  }
 
   @if $breakpoint == big-desktop {
-      @media (min-width: 112.5em) { @content } //1800 and more
+    @media (min-width: 112.5em) {
+      @content;
+    } //1800 and more
   }
 }
-

@@ -1,0 +1,48 @@
+.header {
+  height: 15vh;
+  background-color: #030450;
+  //#030450
+  position: absolute;
+  width: 100%;
+
+  &--logo {
+    height: 85%;
+    margin-left: 2rem;
+    @include verticallyCenter;
+    position: relative;
+  }
+
+  &--gravatar {
+    height: 65%;
+    width: auto;
+    border-radius: 100px;
+    top: 0;
+    left: 80%;
+    position: relative;
+  }
+
+  &--create {
+    &__link {
+      &:link,
+      &:visited {
+        text-decoration: none;
+        color: white;
+      }
+
+      &:hover {
+        color: yellow;
+      }
+
+      &:active {
+        color: yellow;
+      }
+    }
+    position: relative;
+    color: white;
+    font-size: 2rem;
+    left: 15%;
+    width: 20%;
+    top: 0px;
+    transform: translateY(-170%);
+  }
+}

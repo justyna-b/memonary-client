@@ -1,0 +1,49 @@
+@import '../abstracts/variables';
+
+.toggler {
+  height: 50vh;
+  width: 17vw;
+  background-color: white;
+  position: relative;
+  left: 75%;
+  border-radius: 10px;
+  box-shadow: $shadow-active-light;
+
+  &--gravatar {
+    &__img {
+      border-radius: 100px;
+      height: 20%;
+      width: auto;
+      margin: 1.5rem 1.5rem 0 1.5rem;
+    }
+    display: inline-block;
+  }
+
+  &--profile {
+    display: inline-block;
+    transform: translate(0%, -20%);
+    font-size: 1.6rem;
+    color: #606060;
+
+    &__username {
+      text-transform: uppercase;
+    }
+  }
+
+  &--button {
+    width: 80%;
+    @include absCenter;
+    position: relative;
+    box-shadow: $shadow-hover-light;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem;
+    color: white;
+  }
+
+  &--line {
+    color: $very-light-grey-bcg;
+    border: solid 1.5px;
+    margin: 1.5rem 0 1.5rem 0;
+  }
+}
