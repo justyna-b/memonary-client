@@ -19,8 +19,12 @@ class Toggler extends React.Component {
   onClickLogOut = event => {
     event.preventDefault()
 
-    this.Auth.fetch('http://localhost:3000/users/logout', {
-      method: 'POST'
+    this.Auth.fetch('http://localhost:3000/users/logout-all', {
+      method: 'POST',
+       headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+      }
     })
       .then(this.Auth.logout())
       .then(window.location.reload())

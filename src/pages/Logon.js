@@ -35,7 +35,6 @@ class Logon extends React.Component {
   }
 
   handleRegister = () => {
-    // return <Popup/>
     this.setState({ register: true })
   }
 

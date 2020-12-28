@@ -1,0 +1,44 @@
+@import '../abstracts/variables';
+
+.word {
+  height: 17vh;
+  background-color: white;
+  width: 90%;
+  @include absCenter;
+  border-radius: 10px;
+  box-shadow: $shadow-link-light;
+  text-align: center;
+  position: relative;
+
+&__line {
+    //TODO - remove sth else to make it reusable
+    color: $very-light-grey-bcg;
+    border: solid 2px;
+    margin: 1.5rem 0 1.5rem 0;
+    position: relative;
+    top: 4rem;
+    margin-top: 3rem;
+}
+
+  &__input {
+    padding: 4rem 3rem 0 3rem;
+    &--container {
+      float: left;
+      width: 47.5%;
+
+      &:not(:last-child) {
+        margin-right: 5% !important;
+      }
+    }
+    &--input {
+      width: 100%;
+      border: none;
+      border-bottom: 3px solid $very-light-grey-bcg;
+      padding: 3px;
+
+      &::placeholder {
+          color: grey;
+      }
+    }
+  }
+}

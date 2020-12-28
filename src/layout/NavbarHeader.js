@@ -55,7 +55,7 @@ class NavbarHeader extends React.Component {
           <Toggler email={this.state.email} username={this.state.username} />
         ) : null}
         <div className='header--create'>
-          <a href='!#' className='header--create__link'>
+          <a href='/folder/create' className='header--create__link'>
             <span id='header--create__link__plus'>&#43;</span> Stwórz{' '}
           </a>
         </div>

@@ -52,7 +52,6 @@ class Home extends React.Component {
           {this.state.auth ? '' : <Redirect to='/logon' />}
           <NavbarHeader/>
           <div>welcome</div>
-          {/* {localStorage.getItem('id_token')} */}
           <div>{this.state.name}</div>
           <button onClick={this.onClickLogOut}>logout</button>
         </body>

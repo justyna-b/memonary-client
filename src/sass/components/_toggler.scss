@@ -8,6 +8,7 @@
   left: 75%;
   border-radius: 10px;
   box-shadow: $shadow-active-light;
+  z-index: 999;
 
   &--gravatar {
     &__img {

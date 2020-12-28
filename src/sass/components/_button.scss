@@ -38,7 +38,7 @@
     &:disabled {
       background-color: $text-grey-light;
       box-shadow: none;
-      
+
       &:hover {
         transform: none;
         box-shadow: none;
@@ -66,4 +66,8 @@
       font-family: $nunito-bold-bold;
       font-size: $font-size-button;
       margin: $typical-margin;
+  }
+
+  .orange {
+    background-color: $yellow-dark;
   }
