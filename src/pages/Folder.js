@@ -5,6 +5,7 @@ import LanProgress from '../components/LanProgress'
 import FolderCard from '../components/FolderCard'
 import AuthService from '../logic/AuthService'
 import NavbarHeader from '../layout/NavbarHeader'
+import WordEdit from '../components/WordEdit'
 
 class Folder extends React.Component {
   constructor (props) {
@@ -105,6 +106,15 @@ class Folder extends React.Component {
                 &raquo;
               </button>
             </div>
+            {this.state.words.map(word => (
+                <div
+                key={word._id}
+                // className='recent-folders-container--folder'
+              >
+                <WordEdit  definition={word.definition} translation={word.translation}/>
+              </div>
+            ))}
+            {/* <WordEdit/> */}
           </div>
 
           <div className='cols-container__col cols-container__col--stuff'>
