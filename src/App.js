@@ -6,6 +6,7 @@ import Registration from './pages/Registration.js'
 import Polygon from './pages/Polygon'
 import Home from './pages/Home.js'
 import CreateFolder from './pages/CreateFolder'
+import Folder from './pages/Folder'
 import './sass/main.scss'
 
 class App extends React.Component {
@@ -17,9 +18,10 @@ class App extends React.Component {
             <Route exact path='/' component={Logon} />
             <Route path='/logon' component={Logon} />
             <Route path='/register' component={Registration} />
-            <Route path='/test' component={Polygon} />
+            {/* <Route path='/test' component={Polygon} /> */}
             <Route path='/home' component={Home} />
             <Route path='/folder/create' component={CreateFolder} />
+            <Route path='/:folderName/:folderId' component={Folder} />
           </Switch>
         </BrowserRouter>
       </div>

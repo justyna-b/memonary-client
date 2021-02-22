@@ -8,10 +8,13 @@
 @import './layout/fonts';
 @import './layout/grid';
 @import './layout/navbarHeader';
+@import './layout/home-skeleton';
 
 @import './pages/logon';
 @import './pages/registration';
 @import './pages/create_folder';
+@import './pages/hpMainFlow';
+@import './pages/folderView';
 
 @import './components/button';
 @import './components/input';
@@ -19,3 +22,5 @@
 @import './components/popup';
 @import './components/toggler';
 @import './components/word';
+@import './components/lan-progress';
+@import './components/folder-card';

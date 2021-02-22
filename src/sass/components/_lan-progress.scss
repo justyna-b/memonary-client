@@ -1,0 +1,26 @@
+.lan-progress-container {
+    background-color: white;
+    width: 80%;
+    border-radius: 10px 10px 10px 10px;
+    margin: 5% 10% 5% 10%;
+    padding: 0rem 2rem 0rem 2rem;
+
+    &__title {
+        font-size: 3rem;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    &__row {
+        background-color: white;
+        flex-direction: row;
+        display: flex;
+        justify-content: space-around;
+        border-radius: 0px 0px 10px 10px;
+
+        &--col {
+            width: 1/3%;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 import AuthService from '../logic/AuthService'
 import NavbarHeader from '../layout/NavbarHeader'
+import HPMainFlow from '../layout/HPMainFlow'
 
 class Home extends React.Component {
   constructor (props) {
@@ -48,13 +49,21 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        <body>
-          {this.state.auth ? '' : <Redirect to='/logon' />}
-          <NavbarHeader/>
-          <div>welcome</div>
-          <div>{this.state.name}</div>
-          <button onClick={this.onClickLogOut}>logout</button>
-        </body>
+        {this.state.auth ? '' : <Redirect to='/logon' />}
+        <div>
+          <NavbarHeader />
+        </div>
+        <div className='cols-container'>
+          <div className='cols-container__col cols-container__col--nav'>
+            pierwsza
+          </div>
+          <div className='cols-container__col cols-container__col--flow'>
+            <HPMainFlow />
+          </div>
+          <div className='cols-container__col cols-container__col--stuff'>
+            trzecia
+          </div>
+        </div>
       </div>
     )
   }

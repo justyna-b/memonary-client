@@ -1,0 +1,33 @@
+.recent-folders-container {
+  flex-direction: row;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+
+  &--folder {
+    margin: 0rem 0rem 4rem 0rem;
+  }
+}
+
+#expand--folders {
+  font-size: 2rem;
+  display: flex;
+  justify-content: right;
+  padding: 2rem;
+}
+
+.folder {
+  &:link,
+  &:visited {
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+  }
+
+  &:active {
+    transform: translateY(-0.2rem);
+  }
+}

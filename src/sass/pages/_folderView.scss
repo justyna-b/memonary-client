@@ -1,0 +1,69 @@
+.folder {
+  &--fish {
+    perspective: 400rem;
+    -moz-perspective: 400rem;
+    position: relative;
+
+    &__side {
+      font-size: 5rem;
+      background-color: white;
+      height: 50vh;
+      width: 70%;
+      margin-left: 15%;
+      border-radius: 3rem;
+      display: flex;
+      flex-wrap: wrap; /* Optional. only if you want the items to wrap */
+      justify-content: center; /* For horizontal alignment */
+      align-items: center; /* For vertical alignment */
+      box-shadow: 0 0.2rem 0.5rem rgba(black, 0.3);
+      margin-bottom: 10px;
+      transition: all 1.3s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      backface-visibility: hidden;
+
+      &--back {
+        transform: rotateY(180deg);
+      }
+    }
+
+    &:hover &__side--front {
+      transform: rotateY(180deg) translateY(-0.3rem);
+      box-shadow: 0 0.4rem 1rem rgba(black, 0.3);
+    }
+
+    &:hover &__side--back {
+      transform: rotateY(0deg) translateY(-0.3rem);
+      box-shadow: 0 0.4rem 1rem rgba(black, 0.3);
+    }
+
+    &:active {
+      transform: translateY(-0.2rem);
+      box-shadow: 0 0.3rem 0.7rem rgba(black, 0.3);
+    }
+  }
+
+  &--title {
+    font-size: 3rem;
+    padding: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+.prev-next {
+  display: flex;
+  flex-wrap: wrap; /* Optional. only if you want the items to wrap */
+  justify-content: space-around;
+  align-items: center; /* For vertical alignment */
+  margin: 32rem 30rem 0rem 30rem;
+  &--click {
+    font-size: 5rem;
+    border: none;
+  }
+
+  &--counter {
+    font-size: 2rem;
+  }
+}
