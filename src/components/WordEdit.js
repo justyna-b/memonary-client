@@ -3,9 +3,6 @@ import React from 'react'
 class WordEdit extends React.Component {
   constructor (props) {
     super(props)
-    // this.state = {
-    //   id: this.props.number
-    // }
   }
 
   render () {

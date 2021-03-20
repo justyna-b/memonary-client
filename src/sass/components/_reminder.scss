@@ -1,0 +1,81 @@
+@import '../abstracts/variables';
+
+.reminder-container {
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10vh;
+  text-align: center;
+
+  &--button {
+    border-radius: 10px;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+  }
+
+  &--emoji {
+    font-size: 8rem;
+  }
+
+  &--title {
+    font-size: 7rem;
+  }
+
+  &--content {
+      font-family: $nunito-extra-bold;
+      font-size: 3.5rem;
+      margin: 3rem 0rem 3rem 0rem;
+      line-height: 4rem;
+  }
+
+  &--greets {
+      font-family: $nunito-extra-bold;
+      font-size: 3.5rem;
+      padding-bottom: 2rem;
+  }
+}
+
+.reminder-finished {
+  // background-color: blue;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 10vh;
+  margin: 8rem 0rem 0rem 0rem;
+
+  // &--emoji {
+  //   font-family: 12rem !important;
+  // }
+
+  // &--content {
+  //   // background-color: chartreuse;
+  // }
+
+  &--button {
+    font-size: 3rem !important;
+    padding: 1rem;
+    margin: 5rem 0rem 0rem 0rem;
+    text-transform: uppercase;
+    font-family: $nunito-bold-bold;
+    border-radius: 1rem;
+    border: none;
+    background-color: #66DA81 !important;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+// #reminder-finish-emoji {
+//   font-size: 8rem !important;
+// }
+
+

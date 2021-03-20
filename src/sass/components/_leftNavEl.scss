@@ -1,0 +1,25 @@
+.nav-element {
+  font-size: 2rem;
+  padding: 1rem;
+  transition: all 1.3s ease;
+
+  &:hover {
+    background-color: royalblue;
+  }
+
+  &--link {
+    &:link,
+    &:visited {
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    &:hover {
+      transform: translateY(-0.3rem);
+    }
+
+    &:active {
+      transform: translateY(-0.2rem);
+    }
+  }
+}

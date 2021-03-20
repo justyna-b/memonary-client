@@ -7,7 +7,9 @@
     text-decoration: none;
     display: inline-block;
     font-size: $font-size-button;
+    // box-shadow: $button-shadow-active;
     box-shadow: $button-shadow-link;
+    // box-shadow: 2px;
   }
 
   &:hover {

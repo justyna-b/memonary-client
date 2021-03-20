@@ -67,7 +67,7 @@ class HPMainFlow extends React.Component {
                 key={item.folder_name}
                 className='recent-folders-container--folder'
               >
-                <FolderCard title={item.folder_name} len={item.words.length} />
+                <FolderCard title={item.folder_name} len={item.words.length} lan={item.language}/>
               </div>
             </a>
           ))}

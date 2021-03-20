@@ -14,7 +14,7 @@ class FolderCard extends React.Component {
         <div className='folder-card-container'>
           <div className='folder-card-container__title'>{this.props.title}</div>
           <hr className='horizontal-line-thick' />
-          <div className='folder-card-container--lan'>language</div>
+          <div className='folder-card-container--lan'>{this.props.lan}</div>
           <div className='folder-card-container--words'>
             Liczba pojęć: {this.props.len}
           </div>

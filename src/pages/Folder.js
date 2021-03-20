@@ -6,6 +6,7 @@ import FolderCard from '../components/FolderCard'
 import AuthService from '../logic/AuthService'
 import NavbarHeader from '../layout/NavbarHeader'
 import WordEdit from '../components/WordEdit'
+import LeftNavbarElement from '../components/LeftNavbarElement'
 
 class Folder extends React.Component {
   constructor (props) {
@@ -14,7 +15,8 @@ class Folder extends React.Component {
       words: [],
       auth: true,
       accurate: '',
-      counter: 1
+      counter: 1,
+      navElements: ['pisownia', 'strona glowna', 'fiszki']
     }
     this.Auth = new AuthService()
   }
@@ -26,8 +28,8 @@ class Folder extends React.Component {
       )
         .then(res => {
           this.setState({
-            words: res,
-            accurate: res[0]
+            words: res.words,
+            accurate: res.words[0]
           })
         })
         .catch(error => {
@@ -73,7 +75,11 @@ class Folder extends React.Component {
         </div>
         <div className='cols-container'>
           <div className='cols-container__col cols-container__col--nav'>
-            pierwsza
+            {this.state.navElements.map(element => (
+              <div key={element}>
+                <LeftNavbarElement item={element} folderId={this.props.match.params.folderId} />
+              </div>
+            ))}
           </div>
           <div className='cols-container__col cols-container__col--flow'>
             <div className='folder--title'>
@@ -81,10 +87,10 @@ class Folder extends React.Component {
             </div>
             <div className='folder--fish'>
               <div className='folder--fish__side folder--fish__side--front'>
-                  {this.state.accurate.definition} {this.state.counter}
+                {this.state.accurate.definition} {this.state.counter}
               </div>
               <div className='folder--fish__side folder--fish__side--back'>
-                  {this.state.accurate.translation} {this.state.counter}
+                {this.state.accurate.translation} {this.state.counter}
               </div>
             </div>
             <div className='prev-next'>
@@ -107,14 +113,13 @@ class Folder extends React.Component {
               </button>
             </div>
             {this.state.words.map(word => (
-                <div
-                key={word._id}
-                // className='recent-folders-container--folder'
-              >
-                <WordEdit  definition={word.definition} translation={word.translation}/>
+              <div key={word._id}>
+                <WordEdit
+                  definition={word.definition}
+                  translation={word.translation}
+                />
               </div>
             ))}
-            {/* <WordEdit/> */}
           </div>
 
           <div className='cols-container__col cols-container__col--stuff'>

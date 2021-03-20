@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+// import 'semantic-ui-css/semantic.min.css';
 import reportWebVitals from './reportWebVitals';
 //
 import './fonts/nunito/Nunito-SemiBold.ttf';
 import './fonts/nunito/Nunito-Bold.ttf';
 import './fonts/nunito/Nunito-ExtraBold.ttf';
-
 
 
 ReactDOM.render(

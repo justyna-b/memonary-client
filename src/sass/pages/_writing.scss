@@ -1,0 +1,91 @@
+@import '../abstracts/variables';
+
+.writing-card {
+  background-color: white;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  border: none;
+  border-radius: 10px;
+  margin: 5rem;
+  box-shadow: 0 0.2rem 0.5rem rgba(black, 0.3);
+
+  &__correctness {
+    font-size: 5rem;
+    font-family: $nunito-extra-bold;
+    text-transform: uppercase;
+
+    &--icon {
+      font-size: 13rem;
+    }
+  }
+
+  &--definition {
+    font-size: 5rem;
+    margin: 2rem 0rem 2rem 0rem;
+  }
+
+  &__input {
+    &--field {
+      font-size: 3rem;
+      margin: 1rem 0rem 2rem 0rem;
+      border-radius: 10rem;
+      border: solid 1.5px rgb(200, 200, 200);
+      padding: 1rem;
+    }
+  }
+
+  &__restart {
+    margin: 5rem 0rem 0rem 0rem;
+    color: rgb(200, 200, 200);
+    font-size: 1.5rem;
+  }
+
+  &__congrats {
+    &--main {
+      &--emoji {
+        font-size: 12rem;
+      }
+
+      &--title {
+        font-size: 7rem;
+        font-family: $nunito-extra-bold;
+        text-transform: uppercase;
+      }
+    }
+
+    &--subtitle {
+      font-size: 3.5rem;
+      padding-top: 4rem;
+    }
+  }
+}
+
+#correct {
+  color: green;
+}
+
+#incorrect {
+  color: red;
+}
+
+.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.do-not-show {
+  display: none !important;
+}
+
+.definition-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-family: $nunito-bold-bold;
+}
