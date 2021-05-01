@@ -18,10 +18,15 @@ export default class AuthService {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(res => {
-      this.setToken(res.token)
-      return Promise.resolve(res)
     })
+      .then(res => {
+        this.setToken(res.token)
+        return Promise.resolve(res)
+      })
+      .catch(error => {
+        let badCred = document.getElementById('badCred')
+        badCred.innerHTML = 'Niepoprawne dane: błędny login bądź hasło'
+      })
   }
 
   async loggedIn () {

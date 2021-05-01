@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Progressbar from './Progressbar'
+
 class FolderCard extends React.Component {
   constructor (props) {
     super(props)
@@ -10,7 +12,7 @@ class FolderCard extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='static'>
         <div className='folder-card-container'>
           <div className='folder-card-container__title'>{this.props.title}</div>
           <hr className='horizontal-line-thick' />
@@ -18,6 +20,7 @@ class FolderCard extends React.Component {
           <div className='folder-card-container--words'>
             Liczba pojęć: {this.props.len}
           </div>
+          <Progressbar progress={this.props.progress}/>
         </div>
       </div>
     )

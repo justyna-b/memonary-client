@@ -1,9 +1,7 @@
 import React from 'react'
-import Gravatar from 'react-gravatar'
 
 import logo from '../assets/logoDark.svg'
 import AuthService from '../logic/AuthService'
-import Toggler from '../components/Toggler'
 
 class NavbarHeader extends React.Component {
   constructor (props) {
@@ -37,27 +35,42 @@ class NavbarHeader extends React.Component {
     }
   }
 
-  toggleHandler = () => {
-    this.setState({ toggle: !this.state.toggle })
+  onClickLogOut = event => {
+    event.preventDefault()
+
+    this.Auth.fetch('http://localhost:3000/users/logout-all', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('id_token')
+      }
+    })
+      .then(this.Auth.logout())
+      .then(window.location.reload())
+      .then((window.location.href = '/logon'))
   }
 
   render () {
     return (
       <div className='header'>
-        <img src={logo} alt='logo' className='header--logo' />
-
-        <Gravatar
-          email={this.state.email}
-          className='header--gravatar'
-          onClick={this.toggleHandler}
-        />
-        {this.state.toggle ? (
-          <Toggler email={this.state.email} username={this.state.username} />
-        ) : null}
-        <div className='header--create'>
-          <a href='/folder/create' className='header--create__link'>
-            <span id='header--create__link__plus'>&#43;</span> Stwórz{' '}
-          </a>
+        <div className='header__elems-container'>
+          <div className='phone-nav'>
+            <a href='/tworzenie' className='phone-nav--el' id='separator'>
+              tworzenie
+            </a>
+            <div onClick={this.onClickLogOut} className='phone-nav--el' id='phone-logout'>wyloguj</div>
+          </div>
+          <div
+            className='header__elems-container--icon'
+            onClick={this.onClickLogOut}
+          >
+            Witaj {this.state.username}: wyloguj
+          </div>
+          <div id='logo'>
+            <a href='/tablica'>
+              <img src={logo} alt='logo' className='header-logo' />
+            </a>
+          </div>
         </div>
       </div>
     )

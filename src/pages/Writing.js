@@ -21,7 +21,7 @@ class Writing extends React.Component {
       auth: true,
       accurate: '',
       counter: 1,
-      navElements: ['pisownia', 'strona glowna', 'fiszki'],
+      navElements: ['tablica', 'fiszki'],
       hidden: false,
       progress: null,
       showFinished: false,
@@ -103,10 +103,6 @@ class Writing extends React.Component {
   }
 
   render () {
-    const reminderTitle = `Hej, zaczekaj chwilę!`
-    const reminderContent = ` Pamiętaj, Twoje wyniki aktualizowane są po ukończeniu rundy.`
-    const reminderGreets = `Powodzenia!`
-
     const reminderFullKnownTitle = `Cześć!`
     const reminderFullKnownSubtitle = `Chcesz zacząć od nowa?`
     const reminderFullKnownGreet = `Cześć ponownie!`
@@ -119,24 +115,25 @@ class Writing extends React.Component {
         </div>
         <div className='cols-container'>
           <div className='cols-container__col cols-container__col--nav'>
+            <div className='nav-home'>
             {this.state.navElements.map(element => (
               <div key={element}>
-                <LeftNavbarElement item={element} />
+                <LeftNavbarElement item={element} folderId={this.props.match.params.folderId} />
               </div>
             ))}
+            </div>
           </div>
           {this.state.showReminder}
           <div className='cols-container__col cols-container__col--flow'>
             <Reminder
-              content={reminderContent}
-              title={reminderTitle}
-              greets={reminderGreets}
+              content={<div id='learn'>&#128395;</div>}
+              explication='O co chodzi?'
               visibility={
                 !this.state.showFinished && this.state.showReminder
                   ? 'visible'
                   : 'hidden'
               }
-              button='Zaczynamy'
+              button='Zacznij'
               onClick={this.hideReminder}
             />
             <ReminderFinished
@@ -156,7 +153,7 @@ class Writing extends React.Component {
           </div>
 
           <div className='cols-container__col cols-container__col--stuff'>
-            trzecia
+            {' '}
           </div>
         </div>
       </div>

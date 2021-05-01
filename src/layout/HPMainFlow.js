@@ -57,8 +57,8 @@ class HPMainFlow extends React.Component {
     return (
       <div>
         {this.state.hide ? '' : <LanProgress />}
-        <div onClick={this.loadMore} id='expand--folders'>
-          Pokaż wszystkie &raquo;
+        <div onClick={this.loadMore}  className='expand-folders'>
+          Pokaż wszystkie <span className='expand-folders--icon'>&raquo;</span>
         </div>
         <div className='recent-folders-container'>
           {this.state.folders.map(item => (
@@ -67,7 +67,12 @@ class HPMainFlow extends React.Component {
                 key={item.folder_name}
                 className='recent-folders-container--folder'
               >
-                <FolderCard title={item.folder_name} len={item.words.length} lan={item.language}/>
+                <FolderCard
+                  title={item.folder_name}
+                  len={item.words.length}
+                  lan={item.language}
+                  progress={item.progress}
+                />
               </div>
             </a>
           ))}

@@ -3,7 +3,6 @@ import React from 'react'
 import AuthService from '../logic/AuthService'
 import Progressbar from '../components/Progressbar'
 
-
 class WritingCard extends React.Component {
   constructor (props) {
     super(props)
@@ -22,7 +21,6 @@ class WritingCard extends React.Component {
       unknownWordA: [],
       showCongrats: 'do-not-show',
       progress: this.props.progress
-      // progress: this.props.progress
     }
     this.Auth = new AuthService()
   }
@@ -61,7 +59,7 @@ class WritingCard extends React.Component {
     }
   }
 
-  changeDefHandler = (event) => {
+  changeDefHandler = event => {
     event.preventDefault()
     this.setState({
       enableCheck: true,
@@ -86,11 +84,8 @@ class WritingCard extends React.Component {
         unknownWordA: list,
         showCorrect: 'show',
         showDefinition: 'do-not-show',
-        progress: this.state.progress + (100 / this.state.wordsToLearn.length)
+        progress: this.state.progress + 100 / this.state.wordsToLearn.length
       })
-      alert(this.state.wordsToLearn.length)
-      alert(this.state.words.length)
-      alert(Math.floor(100 / 3))
     } else {
       this.setState({
         showIncorrect: 'show',
@@ -125,7 +120,6 @@ class WritingCard extends React.Component {
             unknownWordA: []
           })
           this.keepOn()
-          alert(this.state.wordsToLearn.length)
         } else {
           await this.setState({
             showEndOfRound: 'show',
@@ -138,12 +132,9 @@ class WritingCard extends React.Component {
   }
 
   addUnknownWord = () => {
-    console.log(this.state.unknownWordA)
     let num = this.state.unknownWordA.findIndex(item => {
       return item._id == this.state.accurate._id
     })
-    alert('numm')
-    alert(num)
     if (num === -1) {
       this.setState(state => {
         const unknownWordA = state.unknownWordA.concat(state.unknownWord)
@@ -154,21 +145,7 @@ class WritingCard extends React.Component {
     }
   }
 
-  // returns new array without item with no such id
-  //TODO: should works but not, why?
-  //   deleteKnownWord = id => {
-  //     alert('delete')
-  //     this.setState(state => {
-  //       const list = state.unknownWordA.filter(item => item._id !== id)
-  //       return {
-  //         list
-  //       }
-  //     })
-  //     console.log(this.state.unknownWordA)
-  //   }
-
   keepOn = async () => {
-    alert(this.state.unknownWordA)
     if (await this.Auth.loggedIn()) {
       await this.Auth.fetch(
         `http://localhost:3000/folder/to-know-words/${this.props.folderId}`,
@@ -191,83 +168,124 @@ class WritingCard extends React.Component {
   }
 
   countProgress = () => {
-    let accProgress = 100 - (this.state.unknownWordA.length / this.state.words * 100)
+    let accProgress =
+      100 - (this.state.unknownWordA.length / this.state.words) * 100
     return accProgress
+  }
+
+  handleReset = async () => {
+    if (await this.Auth.loggedIn()) {
+      this.Auth.fetch(
+        `http://localhost:3000/folder/to-know-words/${this.props.folderId}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('id_token')
+          },
+          body: JSON.stringify({
+            to_know_words: [],
+            progress: 0
+          })
+        }
+      )
+        //TODO: find way without reloading the whole page
+        .then(window.location.reload())
+        .catch(error => {
+          console.log({ message: 'ERROR ' + error })
+        })
+    } else {
+      this.setState({ auth: false })
+      this.Auth.logout()
+      window.location.reload()
+      window.location.href = '/logon'
+    }
   }
 
   render () {
     return (
       <div>
-      <div className={`writing-card ${this.props.visibility}`}>
-        <div
-          className={`correct writing-card__correctness ${this.state.showCorrect}`}
-        >
-          <span
-            className='correct writing-card__correctness--icon'
-            id='correct'
+        <div className={`writing-card ${this.props.visibility}`}>
+          <div
+            className={`correct writing-card__correctness ${this.state.showCorrect}`}
           >
-            &#10004;
-          </span>
-          super!
-        </div>
-        <div
-          className={`correct writing-card__end-of-round ${this.state.showEndOfRound}`}
-        >
-          <div>koniec rundy {this.state.round}</div>
-          <div>twój wynik: </div>
-          <button onClick={this.keepOn}>kontynuuj</button>
-        </div>
-        <div
-          className={`correct writing-card__congrats ${this.state.showCongrats}`}
-        >
-          <div>
-            <div className='writing-card__congrats--main'>
-              <span className='writing-card__congrats--main--emoji'>
-                &#127942;
-              </span>
-              <span className='writing-card__congrats--main--title'>
-                Udało się!
-              </span>
+            <span
+              className='correct writing-card__correctness--icon'
+              id='correct'
+            >
+              &#10004;
+            </span>
+            super!
+          </div>
+          <div
+            className={`correct writing-card__end-of-round ${this.state.showEndOfRound}`}
+          >
+            <div className='writing-card__end-of-round--info'>
+              koniec rundy {this.state.round - 1}
             </div>
-            <div className='writing-card__congrats--subtitle'>
-              Opanowałeś materiał w {this.state.round} rundach
+            <div className='writing-card__end-of-round--score'>
+              twój wynik:{' '}
+              {this.state.words.length - this.state.unknownWordA.length} /{' '}
+              {this.state.words.length}
+            </div>
+            <button
+              onClick={this.keepOn}
+              className='writing-card__end-of-round--continue button-submit'
+            >
+              kontynuuj
+            </button>
+          </div>
+          <div
+            className={`correct writing-card__congrats ${this.state.showCongrats}`}
+          >
+            <div>
+              <div className='writing-card__congrats--main'>
+                <span className='writing-card__congrats--main--emoji'>
+                  &#127942;
+                </span>
+                <span className='writing-card__congrats--main--title'>
+                  Udało się!
+                </span>
+              </div>
+              <div className='writing-card__congrats--subtitle'>
+                Opanowałeś materiał w {this.state.round} rundach
+              </div>
+            </div>
+          </div>
+          <div
+            className={`incorrect writing-card__correctness ${this.state.showIncorrect}`}
+          >
+            <span
+              className='correct writing-card__correctness--icon'
+              id='incorrect'
+            >
+              &#10008;
+            </span>
+            następnym razem!
+          </div>
+          <div className={`${this.state.showDefinition} definition-container`}>
+            <div className={`writing-card--definition`}>
+              {this.state.accurate.definition}
+            </div>
+            <input
+              className='writing-card__input--field'
+              onChange={this.changeDefHandler}
+              defaultValue=''
+              value={this.state.usersTrans}
+            />
+            <button
+              className='writing-card--button button button-submit orange'
+              disabled={!this.state.enableCheck}
+              onClick={this.validateCorrectness}
+            >
+              Sprawdz
+            </button>
+            <div className='writing-card__restart' onClick={this.handleReset}>
+              Zacznij od nowa
             </div>
           </div>
         </div>
-        <div
-          className={`incorrect writing-card__correctness ${this.state.showIncorrect}`}
-        >
-          <span
-            className='correct writing-card__correctness--icon'
-            id='incorrect'
-          >
-            &#10008;
-          </span>
-          następnym razem!
-        </div>
-        <div className={`${this.state.showDefinition} definition-container`}>
-          <div className={`writing-card--definition`}>
-            {this.state.accurate.definition} {this.state.counter}
-          </div>
-          <input
-            className='writing-card__input--field'
-            onChange={this.changeDefHandler}
-            defaultValue=''
-            value={this.state.usersTrans}
-          />
-          <button
-            className='writing-card--button button button-submit orange'
-            disabled={!this.state.enableCheck}
-            onClick={this.validateCorrectness}
-          >
-            Sprawdz
-          </button>
-          <a href='!#' className='writing-card__restart'>
-            Zacznij od nowa
-          </a>
-        </div>
-      </div>
-          <Progressbar progress={this.state.progress} />
+        <Progressbar progress={this.state.progress} />
       </div>
     )
   }

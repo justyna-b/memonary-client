@@ -1,10 +1,16 @@
+@import '../abstracts/variables';
+
 .nav-element {
   font-size: 2rem;
-  padding: 1rem;
-  transition: all 1.3s ease;
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  transition: all 1.5s ease;
+  margin: 1.5rem 0.8rem 1.5rem 0.8rem;
+  font-family: $nunito-extra-bold;
+  background-color: $very-light-grey-bcg;
 
   &:hover {
-    background-color: royalblue;
+    background-color: #030450;
+    color: white;
   }
 
   &--link {
@@ -12,14 +18,22 @@
     &:visited {
       text-transform: uppercase;
       text-decoration: none;
+      color: $font-dark;
     }
 
     &:hover {
       transform: translateY(-0.3rem);
+      color: white;
     }
 
     &:active {
       transform: translateY(-0.2rem);
     }
   }
+}
+
+.nav-home {
+  margin-top: 20rem;
+  position: fixed;
+  width: 18%;
 }

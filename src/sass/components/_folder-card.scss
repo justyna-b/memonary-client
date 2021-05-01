@@ -1,17 +1,37 @@
+@import './abstracts/variables';
+
 .folder-card-container {
     min-width: 55vh;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 2rem;
+    color: $font-light;
 
     &__title {
         font-size: 2rem;
         text-transform: uppercase;
-        font-weight: bold;
+        font-family: $nunito-bold-bold;
+        color: $font-dark;
+        padding: 0rem 0rem 1rem 0rem;
     }
 
     &--lan {
         text-transform: uppercase;
+        font-size: 1rem;
+        color: $font-light;
     }
 
+    &--words {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        padding: .5rem 0rem 1rem 0rem;
+        color: $font-light;
+    }
+
+}
+
+.static {
+    min-height: 16rem;
+    border-radius: 10px;
+    min-width: 25rem;
 }

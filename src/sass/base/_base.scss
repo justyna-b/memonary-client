@@ -1,4 +1,5 @@
 @import '../abstracts/mixins';
+@import './abstracts/variables';
 
 *,
 *::after,
@@ -7,6 +8,7 @@
   padding: 0px;
   box-sizing: inherit;
   letter-spacing: 0.25rem;
+  color: $font-dark;
 }
 
 html {

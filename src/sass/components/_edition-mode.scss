@@ -1,0 +1,23 @@
+@import '../abstracts/variables';
+
+.edition-mode__container {
+  margin: 3rem 0rem 0rem 0rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.return {
+    text-transform: uppercase;
+    font-family: $nunito-extra-bold !important;
+    font-size: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    &:hover {
+        color: $blue-light;
+    }
+}
+
+#inputs-container {
+    margin: 6rem 0rem 0rem 0rem;
+}

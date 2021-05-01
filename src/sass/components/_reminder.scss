@@ -2,6 +2,9 @@
 
 .reminder-container {
   font-size: 3rem;
+  @include respond(phone) {
+    font-size: 1.5rem;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,9 +14,12 @@
 
   &--button {
     border-radius: 10px;
+    font-family: $nunito-extra-bold;
+    letter-spacing: 0.7rem;
     border: none;
     padding: 1rem;
     cursor: pointer;
+    background-color: $blue-light;
   }
 
   &--emoji {
@@ -25,44 +31,59 @@
   }
 
   &--content {
-      font-family: $nunito-extra-bold;
-      font-size: 3.5rem;
-      margin: 3rem 0rem 3rem 0rem;
-      line-height: 4rem;
+    font-family: $nunito-extra-bold;
+    font-size: 3.5rem;
+    @include respond(phone) {
+      font-size: 2rem;
+    }
+    margin: 3rem 0rem 3rem 0rem;
+    line-height: 4rem;
   }
 
   &--greets {
-      font-family: $nunito-extra-bold;
-      font-size: 3.5rem;
-      padding-bottom: 2rem;
+    font-family: $nunito-extra-bold;
+    font-size: 3.5rem;
+    padding-bottom: 2rem;
   }
 }
 
 .reminder-finished {
-  // background-color: blue;
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 10vh;
-  margin: 8rem 0rem 0rem 0rem;
+  margin: 3rem 0rem 5rem 0rem;
 
-  // &--emoji {
-  //   font-family: 12rem !important;
-  // }
+  &--emoji {
+    padding: 6rem;
+    font-weight: bold;
+    font-size: 20rem;
+    cursor: default;
+  }
 
-  // &--content {
-  //   // background-color: chartreuse;
-  // }
+  &--text {
+    font-size: 5rem;
+    @include respond(phone) {
+      font-size: 3rem;
+    }
+    margin: 10px;
+    font-family: $nunito-extra-bold;
+    text-transform: uppercase;
+    padding: 4rem;
+    cursor: default;
+  }
 
   &--button {
     font-size: 3rem !important;
     padding: 1rem;
     margin: 5rem 0rem 0rem 0rem;
     text-transform: uppercase;
-    font-family: $nunito-bold-bold;
+    font-family: $nunito-extra-bold;
     border-radius: 1rem;
     border: none;
-    background-color: #66DA81 !important;
+    color: white;
+    letter-spacing: 0.6rem;
+    background-color: #66da81 !important;
+    cursor: pointer;
   }
 }
 
@@ -74,8 +95,17 @@
   display: flex;
 }
 
-// #reminder-finish-emoji {
-//   font-size: 8rem !important;
-// }
+#learn {
+  padding: 3rem 0rem 5rem 0rem;
+  font-size: 25rem;
+  color: $font-dark;
+  font-weight: bold;
+  cursor: default;
+}
 
-
+#explication {
+  font-size: 1.8rem;
+  color: $font-light;
+  margin-top: 2rem;
+  cursor: pointer;
+}

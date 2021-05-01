@@ -20,6 +20,16 @@
     padding: 2rem;
     text-align: center;
 
+    @include respond(phone){
+      width: 90%;
+      height: 90%;
+    }
+
+    @include respond(tab-port){
+      width: 70%;
+      height: 80%;
+    }
+
     &--close {
       color: grey;
       text-decoration: none;
@@ -38,4 +48,18 @@
       margin: $small-space 1rem $small-space 1rem;
     }
   }
+}
+
+#popup-closure {
+  cursor: pointer;
+}
+
+.close {
+  visibility: hidden;
+  display: none;
+}
+
+#info{
+  font-size: 2rem;
+  font-family: $nunito-extra-bold;
 }

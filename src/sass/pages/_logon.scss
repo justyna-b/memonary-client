@@ -5,7 +5,6 @@
   padding: $small-space;
   background-color: $very-light-grey-bcg;
   height: 100vh;
-  // height: 50vw;
   font-size: 2rem;
   @include respond(phone) {
     padding: 0;
@@ -28,7 +27,7 @@
       float: left;
       position: absolute;
       width: 50%;
-      margin-top: calc(20vh - 3rem);
+      margin-top: calc(20vh - 6rem);
       @include respond(phone) {
         left: 0;
         width: 100%;
@@ -39,7 +38,7 @@
       &__form {
         background-color: #f0f2f5;
         width: 60%;
-        height: 65vh;
+        height: 70vh;
         margin: auto;
         border-radius: 1rem;
         padding: 20px;
@@ -67,8 +66,11 @@
 .logon {
   &--title {
     color: $dark-grey;
+    font-family: $nunito-extra-bold;
     text-transform: uppercase;
     margin-bottom: $small-space;
+    font-size: 2.5rem;
+    letter-spacing: .6rem;
   }
   &--input {
     margin-bottom: 1rem;
@@ -88,4 +90,11 @@
 .text-pwd {
   font-size: 1.6rem;
   color: $text-grey-light;
+}
+
+#badCred {
+  font-family: $nunito-extra-bold;
+  margin-bottom: 2rem;
+  color: red;
+  text-transform: uppercase;
 }

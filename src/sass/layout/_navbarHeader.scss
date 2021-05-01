@@ -1,48 +1,95 @@
 .header {
-  height: 15vh;
+  min-height: 8rem;
   background-color: #030450;
-  //#030450
-  position: absolute;
+  position: fixed;
   width: 100%;
+  z-index: 9999;
+  flex-direction: row;
 
-  &--logo {
-    height: 85%;
-    margin-left: 2rem;
-    @include verticallyCenter;
-    position: relative;
-  }
+  &__elems-container {
+    flex-direction: row;
+    position: absolute;
+    align-self: flex-end;
+    align-items: flex-end;
+    height: 8rem;
+    width: 100%;
 
-  &--gravatar {
-    height: 65%;
-    width: auto;
-    border-radius: 100px;
-    top: 0;
-    left: 80%;
-    position: relative;
-  }
-
-  &--create {
-    &__link {
-      &:link,
-      &:visited {
-        text-decoration: none;
-        color: white;
-      }
-
-      &:hover {
-        color: yellow;
-      }
-
-      &:active {
-        color: yellow;
+    &--icon {
+      margin: 0;
+      position: absolute;
+      left:70%;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      color: white;
+      font-family: $nunito-bold-bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      @include respond(tab-port) {
+        display: none;
       }
     }
-    position: relative;
+  }
+}
+
+.header-logo {
+  position: fixed !important;
+  @include respond(tab-land) {
+    height: 6rem;
+  }
+}
+
+#logo {
+  position: relative;
+  left: 0px;
+  top: 1rem;
+}
+
+.phone-nav {
+  @include respond(big-desktop) {
+    display: none;
+  }
+
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  margin: 0rem 0rem 0rem 12rem;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  &--el {
+    @include respond(big-desktop) {
+      display: none;
+    }
     color: white;
-    font-size: 2rem;
-    left: 15%;
-    width: 20%;
-    top: 0px;
-    transform: translateY(-170%);
+    text-transform: uppercase;
+    font-family: $nunito-bold-bold;
+    padding: 0rem 3rem 0rem 3rem;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      font-family: $nunito-extra-bold;
+      color: white;
+      transform: scale(1.03);
+    }
+  }
+}
+
+#separator {
+  border-right: white solid 2px;
+  display: none;
+
+  @include respond(tab-port) {
+    display: inline;
+  }
+}
+
+#phone-logout {
+  display: none;
+
+  @include respond(tab-port) {
+    display: inline;
   }
 }

@@ -1,30 +1,47 @@
+@import './abstracts/variables';
+
 .recent-folders-container {
+  font-family: $nunito-bold-bold;
   flex-direction: row;
   justify-content: space-evenly;
   display: flex;
   flex-wrap: wrap;
-
-  &--folder {
-    margin: 0rem 0rem 4rem 0rem;
-  }
 }
 
-#expand--folders {
-  font-size: 2rem;
+.expand-folders {
+  cursor: pointer;
+  font-size: 1rem;
   display: flex;
   justify-content: right;
-  padding: 2rem;
+  padding: 1rem;
+  font-family: $nunito-extra-bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: $font-light;
+
+  &--icon {
+    margin-left: 7px;
+    margin-top: -1px;
+    font-size: 1.5rem;
+    color: $font-light;
+  }
 }
 
 .folder {
   &:link,
   &:visited {
+    min-width: 30rem;
+    min-height: 16rem;
     text-decoration: none;
     display: inline-block;
+    color: black;
+    box-shadow: $light-active;
+    margin: 0rem 0rem 2rem 0rem;
   }
 
   &:hover {
     transform: translateY(-0.3rem);
+    box-shadow: $light-hover;
   }
 
   &:active {

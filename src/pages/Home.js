@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom'
 import AuthService from '../logic/AuthService'
 import NavbarHeader from '../layout/NavbarHeader'
 import HPMainFlow from '../layout/HPMainFlow'
+import LeftNavbarElement from '../components/LeftNavbarElement'
+
 
 class Home extends React.Component {
   constructor (props) {
@@ -11,7 +13,8 @@ class Home extends React.Component {
     this.state = {
       auth: true,
       name: '',
-      token: localStorage.getItem('id_token')
+      token: localStorage.getItem('id_token'),
+      navElements: ['tablica', 'tworzenie']
     }
     this.Auth = new AuthService()
   }
@@ -54,14 +57,20 @@ class Home extends React.Component {
           <NavbarHeader />
         </div>
         <div className='cols-container'>
-          <div className='cols-container__col cols-container__col--nav'>
-            pierwsza
+          <div className='cols-container__col cols-container__col--nav '>
+          <div className='nav-home'>
+            {this.state.navElements.map(element => (
+              <div key={element} >
+                <LeftNavbarElement item={element} />
+              </div>
+            ))}
+            </div>
           </div>
           <div className='cols-container__col cols-container__col--flow'>
             <HPMainFlow />
           </div>
           <div className='cols-container__col cols-container__col--stuff'>
-            trzecia
+            {`${' '}`}
           </div>
         </div>
       </div>

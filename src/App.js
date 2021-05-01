@@ -20,8 +20,8 @@ class App extends React.Component {
             <Route path='/logon' component={Logon} />
             <Route path='/register' component={Registration} />
             <Route path='/pisownia/:folderId' component={Writing} />
-            <Route path='/home' component={Home} />
-            <Route path='/folder/create' component={CreateFolder} />
+            <Route path='/tablica' component={Home} />
+            <Route path='/tworzenie' component={CreateFolder} />
             <Route path='/:folderName/:folderId' component={Folder} />
           </Switch>
         </BrowserRouter>

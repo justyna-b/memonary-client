@@ -3,7 +3,7 @@
 .folder-create {
   &__container {
     width: 100%;
-    margin-top: 20vh;
+    margin-top: 25vh;
     &--title {
       padding-left: 7rem;
       font-size: 2rem;
@@ -14,8 +14,19 @@
       background-color: white;
       width: 100%;
 
+      &--main {
+        text-transform: uppercase;
+        font-family: $nunito-extra-bold;
+        font-size: 3rem;
+        letter-spacing: 0.8rem;
+      }
+
       &--input {
         width: 70%;
+
+        @include respond(phone) {
+          width: 100%;
+        }
       }
     }
 
@@ -26,12 +37,52 @@
 }
 
 #user-title {
-  width: 40%;
-  padding-top: 2rem;
-  font-size: 1.8rem;
-  padding-top: 30px;
+  width: 60%;
+  padding: 2rem 0rem 0rem 0rem;
+  margin: 0rem 0rem 0rem 0rem;
+  font-size: 2.5rem;
+  padding-top: .5rem;
   position: relative;
-  left: -20rem;
+  text-transform: uppercase;
+  font-family: $nunito-bold-bold;
+  letter-spacing: 0.4rem;
+  @include respond(phone) {
+    width: 85%;
+    left: 0%;
+    font-size: 1.3rem;
+    font-family: $nunito-extra-bold;
+    margin: 1.5rem 0rem 1.5rem 0rem;
+  }
+}
+
+#bottom-save {
+  padding: 2rem;
+  font-family: $nunito-extra-bold;
+  font-size: 2rem;
+  width: 30rem;
+  margin: 0rem 0rem 3rem 0rem;
+}
+
+.blue-text {
+  color: $blue-light;
+  &:link,
+  &:active {
+    color: $blue-light;
+  }
+}
+
+#cancel {
+  position: relative;
+  top: -7rem;
+  left: 75%;
+  text-transform: uppercase;
+  font-family: $nunito-extra-bold;
+
+  @include respond(phone) {
+    margin: 0 auto;
+    top: 0rem;
+    left: calc((100% - 20rem) / 2);
+  }
 }
 
 #save {
@@ -46,10 +97,27 @@
   font-family: $nunito-extra-bold;
   font-size: 2rem;
   width: 20rem;
+  @include respond(phone) {
+    margin: 0 auto;
+    top: 0rem;
+    left: calc((100% - 20rem) / 2);
+  }
+}
+
+.MuiTypography-root,
+MuiFormControlLabel-label,
+MuiTypography-body1 {
+  font-size: 1.5rem !important;
+  text-transform: uppercase;
+  font-family: $nunito-bold !important;
+  letter-spacing: 0.6rem !important;
 }
 
 #new {
   font-size: 2rem;
+  padding: 2rem;
+  width: 40%;
+  margin: 0rem 0rem 2rem 0rem;
 }
 
 #language {

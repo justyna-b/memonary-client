@@ -1,7 +1,8 @@
 @import '../abstracts/variables';
 
 .word {
-  height: 17vh;
+  min-height: 17vh;
+  min-width: 30rem;
   background-color: white;
   width: 90%;
   @include absCenter;
@@ -9,19 +10,24 @@
   box-shadow: $shadow-link-light;
   text-align: center;
   position: relative;
+  margin: 2rem 0rem 0rem 0rem;
+  padding: 1rem 0rem 0rem 0rem;
 
-&__line {
-    //TODO - remove sth else to make it reusable
-    color: $very-light-grey-bcg;
-    border: solid 2px;
-    margin: 1.5rem 0 1.5rem 0;
-    position: relative;
-    top: 4rem;
-    margin-top: 3rem;
-}
+  &__keyboard {
+    margin: 0rem 1rem 0rem 0rem;
+    &--button {
+      background-color: white;
+      border: 0.2rem solid $very-light-grey-bcg;
+      border-radius: 10px;
+      margin: 0rem 0rem 0rem 0.2rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      float: right;
+    }
+  }
 
   &__input {
-    padding: 4rem 3rem 0 3rem;
+    padding: 3rem 3rem 0 3rem;
     &--container {
       float: left;
       width: 47.5%;
@@ -37,8 +43,15 @@
       padding: 3px;
 
       &::placeholder {
-          color: grey;
+        color: $text-grey-light;
+        font-family: $nunito-bold-bold;
+        text-transform: uppercase;
       }
     }
   }
+}
+
+#emptyInfo {
+  color: red;
+  padding: 0rem 0rem 0rem 10rem;
 }

@@ -15,43 +15,92 @@ class Registration extends React.Component {
     }
   }
 
-  onChange = event => {
+  onChange = async event => {
     event.preventDefault()
     this.setState({
       [event.target.name]: event.target.value
     })
-    if (
-      this.state.username.length > 1 &&
-      this.state.email.length > 1 &&
+
+    //being in another field than email check if email is valid
+    //conditions :
+    // 1: it is not empty
+    // 2: it is valid in regex
+    const validEmailConstruct = RegExp(
+      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    )
+    let wrongEmail = document.getElementById('user')
+    if (event.target.name !== 'email') {
+      if (
+        !validEmailConstruct.test(this.state.email) &&
+        wrongEmail.innerHTML === '' &&
+        this.state.email.length > 1
+      ) {
+        wrongEmail.innerHTML += 'Wpisz poprawny adres email'
+      } // validate pwds
+      //pwd are valid
+      else if (
+        event.target.name == 'repPassword' &&
+        event.target.value === this.state.password &&
+        this.state.email.length > 1 &&
+        this.state.username.length > 1
+      ) {
+        this.setState({ enableReg: true })
+      } //pwds are valid
+      else if (
+        event.target.name === 'username' &&
+        this.state.password.length > 1 &&
+        this.state.repPassword.length > 1 &&
+        this.state.password === this.state.repPassword
+      ) {
+        this.setState({ enableReg: true })
+      }
+    } //if it is email field validate currently given data
+    else if (event.target.name === 'email') {
+      if (validEmailConstruct.test(event.target.value)) {
+        wrongEmail.innerHTML = ''
+      }
+    } else if (
+      (event.target.name === 'email' || event.target.name === 'username') &&
       this.state.password.length > 1 &&
       this.state.repPassword.length > 1
     ) {
       this.setState({ enableReg: true })
-    } else {
-      this.setState({ apiMsg: 'wrong data' })
     }
   }
 
   onClickHandler = () => {
-    fetch('http://localhost:3000/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.email
+    const validEmailConstruct = RegExp(
+      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    )
+    let validationInfo = document.getElementById('user')
+    if (!validEmailConstruct.test(this.state.email)){
+      validationInfo.innerHTML += "Błędny adres email"
+    } else if ( this.state.username.length < 1) {
+      validationInfo.innerHTML += "Uzupełnij swoją nazwę użytkownika"
+    } else if (this.state.password !== this.state.repPassword) {
+      validationInfo.innerHTML += "Podane hasła muszą być takie same"
+    } else {
+       fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.email
+        })
       })
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        this.setState({ apiMsg: data.msg, enableReg: false })
-        let usersDiv = document.getElementById('user')
-        usersDiv.innerHTML = this.state.apiMsg + '</br>'
-      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          this.setState({ apiMsg: data.msg, enableReg: false })
+          let usersDiv = document.getElementById('msg')
+          usersDiv.innerHTML = this.state.apiMsg + '</br>'
+        })
+    }
   }
+  validatePwd = () => {}
 
   render () {
     return (
@@ -66,6 +115,7 @@ class Registration extends React.Component {
               <img src={logo} alt='logo' className='popup__content-reg--logo' />
               <hr className='horizontal-line vertical-space-between' />
               <div id='user' />
+              <div id='msg' />
               <div className='popup__content-reg--input'>
                 <div>
                   <input

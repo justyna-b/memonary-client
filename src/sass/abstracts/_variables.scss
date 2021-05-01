@@ -11,10 +11,15 @@ $big-space: 9rem;
 $typical-margin: 1.5rem;
 
 //SHADOWS
-$normal-shadow: 0 0.4rem 1rem rgba(black, 0.5);
-$button-shadow-link: 0 0.4rem 1rem rgba(black, 0.6);
+$normal-shadow: 0 .4rem 1rem rgba(black, 0.5);
+$button-shadow-link: 0 .4rem 1rem rgba(black, 0.6);
 $button-shadow-hover: 0 1rem 2rem rgba(black, 0.6);
 $button-shadow-active: 0 0.5rem 1rem rgba(black, 0.6);
+$shadow-active-light: 0 .1rem 2rem rgba(black, .1);
+$light-active:  0 .1rem 2rem rgba(black, .1);
+$light-hover:  0 .4rem 4rem rgba(black, .1);
+
+
 
 //shadow for button when background is white
 $shadow-link-light: 0 0.2rem 0.5rem rgba(black, 0.3);
@@ -30,6 +35,9 @@ $text-grey-light: #cac8c8;
 $dark-grey: #878787;
 $very-light-grey-bcg: #f0f2f5;
 $error: red;
+$font-dark: #646464fa;
+$font-light: #a8a8affa;
+$navy: #030450;
 
 //FONT SIZES
 $font-size-button: 1.8rem;

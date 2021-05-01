@@ -12,6 +12,35 @@
   margin: 5rem;
   box-shadow: 0 0.2rem 0.5rem rgba(black, 0.3);
 
+  &__end-of-round {
+    flex-direction: column;
+    font-family: $nunito-bold-bold;
+    font-size: 4rem;
+    text-transform: uppercase;
+    &--info {
+      margin: 0rem 0rem 4rem 0rem;
+    }
+    &--score {
+      margin: 0rem 0rem 5rem 0rem;
+    }
+    &--continue {
+      background-color: $blue-light;
+      border-radius: 10px;
+      border: none;
+      padding: 1rem;
+      font-size: 3rem;
+      font-family: $nunito-extra-bold;
+    }
+  }
+
+  &--button {
+    margin: 1.5rem 0rem 0rem 0rem;
+    font-family: $nunito-extra-bold;
+    font-size: 1.7rem;
+    letter-spacing: .5rem;
+    cursor: pointer;
+  }
+
   &__correctness {
     font-size: 5rem;
     font-family: $nunito-extra-bold;
@@ -38,9 +67,10 @@
   }
 
   &__restart {
-    margin: 5rem 0rem 0rem 0rem;
+    margin: 3.5rem 0rem 0rem 0rem;
     color: rgb(200, 200, 200);
     font-size: 1.5rem;
+    cursor: pointer;
   }
 
   &__congrats {

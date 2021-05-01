@@ -1,8 +1,13 @@
+@import './abstracts/variables';
+
 .folder {
   &--fish {
     perspective: 400rem;
     -moz-perspective: 400rem;
     position: relative;
+    @include respond(tab-port) {
+      display: none;
+    }
 
     &__side {
       font-size: 5rem;
@@ -58,12 +63,81 @@
   justify-content: space-around;
   align-items: center; /* For vertical alignment */
   margin: 35rem 30rem 0rem 30rem;
+  @include respond(tab-port) {
+    margin: 5rem 30rem 0rem 30rem;
+  }
   &--click {
+    cursor: pointer;
     font-size: 5rem;
     border: none;
+    &:disabled {
+      color: $font-light;
+      cursor: default;
+    }
+    @include respond(tab-port) {
+      display: none;
+    }
   }
 
   &--counter {
     font-size: 2rem;
+    @include respond(tab-port) {
+      display: none;
+    }
   }
+}
+
+.phone-stuff {
+  display: none;
+  @include respond(tab-land) {
+    display: inline;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+#phone-start-lern {
+  display: none;
+  @include respond(tab-land) {
+    display: inline;
+    text-transform: uppercase;
+    font-family: $nunito-extra-bold;
+    font-size: 3rem;
+    padding: 2rem !important;
+    margin: 3rem 0rem 2rem 0rem;
+    letter-spacing: 0.6rem;
+  }
+}
+
+.center-icon {
+  justify-items: center;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  margin: 2rem 0rem 3rem 0rem;
+  cursor: pointer;
+  &--elem {
+    margin: 0 auto;
+  }
+}
+
+.hide-fish {
+  display: none;
+}
+
+.edition-mode {
+  @include respond(tab-land) {
+    width: 100% !important;
+  }
+}
+
+.center {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.no-edit {
+  display: none;
 }

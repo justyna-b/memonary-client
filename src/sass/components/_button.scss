@@ -7,19 +7,20 @@
     text-decoration: none;
     display: inline-block;
     font-size: $font-size-button;
-    // box-shadow: $button-shadow-active;
     box-shadow: $button-shadow-link;
-    // box-shadow: 2px;
+    cursor: pointer;
   }
 
   &:hover {
     transform: translateY(-0.3rem);
     box-shadow: $button-shadow-hover;
+    cursor: pointer;
   }
 
   &:active {
     transform: translateY(-0.2rem);
     box-shadow: $button-shadow-active;
+    cursor: pointer;
   }
 }
 
@@ -28,6 +29,7 @@
     text-transform: uppercase;
     padding: $very-small-space;
     border-radius: 10px;
+    cursor: pointer;
     &:hover {
       transform: translateY(-0.3rem);
       box-shadow: $shadow-hover-light;
@@ -40,6 +42,7 @@
     &:disabled {
       background-color: $text-grey-light;
       box-shadow: none;
+      cursor: default;
 
       &:hover {
         transform: none;

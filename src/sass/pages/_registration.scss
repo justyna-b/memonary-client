@@ -6,6 +6,12 @@
 
 #user {
     color: $error;
-    font-family: $nunito-bold-bold;
+    font-family: $nunito-extra-bold;
+    text-transform: uppercase;
+}
+
+#msg {
+    color: green;
+    font-family: $nunito-extra-bold;
     text-transform: uppercase;
 }

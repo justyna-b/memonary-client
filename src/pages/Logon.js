@@ -18,13 +18,15 @@ class Logon extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log(`${this.state.email}, ${this.state.password}`)
     this.Auth.login(this.state.email, this.state.password)
       .then(res => {
-        this.props.history.replace('/home')
+        if (res.token !== null) {
+          this.props.history.replace('/tablica')
+        }
       })
       .catch(error => {
-        console.log(error)
+        let badCred = document.getElementById('badCred')
+        badCred.innerHTML = 'Niepoprawne dane: błędny login bądź hasło'
       })
   }
 
@@ -39,7 +41,7 @@ class Logon extends React.Component {
   }
 
   async componentWillMount () {
-    if (await this.Auth.loggedIn()) this.props.history.replace('/home')
+    if (await this.Auth.loggedIn()) this.props.history.replace('/tablica')
   }
 
   render () {
@@ -52,6 +54,7 @@ class Logon extends React.Component {
               <div>
                 <div className='logon-cmp--container__logon__form'>
                   <h1 className='logon--title'> Memonary</h1>
+                  <div id='badCred' />
                   <div>
                     <form onSubmit={this.handleSubmit}>
                       <div>
@@ -78,11 +81,6 @@ class Logon extends React.Component {
                         zaloguj
                       </button>
                     </form>
-                    <div className='vertical-space-between'>
-                      <a href='#!' className='text-link text-pwd'>
-                        Nie pamiętasz hasła?
-                      </a>
-                    </div>
                     <hr className='horizontal-line' />
                     <div>
                       <button
