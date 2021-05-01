@@ -20,7 +20,8 @@ class WritingCard extends React.Component {
       unknownWord: {},
       unknownWordA: [],
       showCongrats: 'do-not-show',
-      progress: this.props.progress
+      progress: this.props.progress,
+      placeholder: ''
     }
     this.Auth = new AuthService()
   }
@@ -202,6 +203,13 @@ class WritingCard extends React.Component {
     }
   }
 
+  giveMePrompt = event => {
+    let prompt =
+      this.state.accurate.translation.charAt(0) +
+      '_'.repeat(this.state.accurate.translation.length - 1)
+    this.setState({ placeholder: prompt })
+  }
+
   render () {
     return (
       <div>
@@ -272,6 +280,7 @@ class WritingCard extends React.Component {
               onChange={this.changeDefHandler}
               defaultValue=''
               value={this.state.usersTrans}
+              placeholder={this.state.placeholder}
             />
             <button
               className='writing-card--button button button-submit orange'
@@ -280,6 +289,10 @@ class WritingCard extends React.Component {
             >
               Sprawdz
             </button>
+            <div className='writing-card__prompt' onClick={this.giveMePrompt}>
+              podpowiedź
+            </div>
+            <hr className='writing-card__line' />
             <div className='writing-card__restart' onClick={this.handleReset}>
               Zacznij od nowa
             </div>

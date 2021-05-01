@@ -10,7 +10,7 @@
   border: none;
   border-radius: 10px;
   margin: 5rem;
-  box-shadow: 0 0.2rem 0.5rem rgba(black, 0.3);
+  box-shadow: 0 .2rem .5rem rgba(black, .3);
 
   &__end-of-round {
     flex-direction: column;
@@ -73,6 +73,14 @@
     cursor: pointer;
   }
 
+  &__prompt {
+    cursor: pointer;
+    color: rgb(200, 200, 200);
+    margin: 1.5rem 0rem 0rem 0rem;
+    font-family: $nunito-extra-bold;
+    text-transform: uppercase;
+  }
+
   &__congrats {
     &--main {
       &--emoji {
@@ -91,6 +99,16 @@
       padding-top: 4rem;
     }
   }
+}
+
+hr.writing-card__line {
+  border-top: 2px solid $very-light-grey-bcg;
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  width: 100%;
+  margin: 1.5rem 0rem 0rem 0rem;
+  border-radius: 10px;
 }
 
 #correct {
