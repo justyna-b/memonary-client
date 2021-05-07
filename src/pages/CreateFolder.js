@@ -84,7 +84,7 @@ class CreateFolder extends React.Component {
       language = 'polski'
     }
     this.setState({ language: language })
-    await this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/folder/create`, {
+    await this.Auth.fetch(`https://memonary-server-service.herokuapp.com/folder/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

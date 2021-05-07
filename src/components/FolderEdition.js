@@ -96,7 +96,7 @@ class FolderEdition extends React.Component {
       delete edited.num
     })
     await this.Auth.fetch(
-      `${process.env.REACT_APP_BASE_URL}/folder/edit/${this.props.folder_id}`,
+      `https://memonary-server-service.herokuapp.com/folder/edit/${this.props.folder_id}`,
       {
         method: 'PUT',
         headers: {

@@ -21,7 +21,7 @@ class Home extends React.Component {
 
   async componentDidMount () {
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/get/me`)
+      this.Auth.fetch(`https://memonary-server-service.herokuapp.com/get/me`)
         .then(res => {
           this.setState({
             name: res.name
@@ -41,7 +41,7 @@ class Home extends React.Component {
   onClickLogOut = event => {
     event.preventDefault()
 
-    this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/users/logout`, {
+    this.Auth.fetch(`https://memonary-server-service.herokuapp.com/users/logout`, {
       method: 'POST',
       headers: { authorization: 'Bearer ' + this.state.token }
     })

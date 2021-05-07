@@ -16,7 +16,7 @@ class LanProgress extends React.Component {
 
   async componentDidMount () {
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/languages`)
+      this.Auth.fetch(`https://memonary-server-service.herokuapp.com/languages`)
         .then(res => {
           this.setState({
             languages: res

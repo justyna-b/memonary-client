@@ -31,7 +31,7 @@ class Folder extends React.Component {
     this.setState({noEdit: 'no-edit'})
     if (await this.Auth.loggedIn()) {
       this.Auth.fetch(
-        `${process.env.REACT_APP_BASE_URL}/folders/${this.props.match.params.folderId}`
+        `https://memonary-server-service.herokuapp.com/folders/${this.props.match.params.folderId}`
       )
         .then(res => {
           this.setState({

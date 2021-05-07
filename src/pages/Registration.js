@@ -80,7 +80,7 @@ class Registration extends React.Component {
     } else if (this.state.password !== this.state.repPassword) {
       validationInfo.innerHTML += "Podane hasła muszą być takie same"
     } else {
-        fetch(`${process.env.REACT_APP_BASE_URL}/users`, {
+        fetch(`https://memonary-server-service.herokuapp.com/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

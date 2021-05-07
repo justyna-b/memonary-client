@@ -33,7 +33,7 @@ class WritingCard extends React.Component {
   getWords = async () => {
     this.state.counter = 0
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/folders/${this.props.folderId}`)
+      this.Auth.fetch(`https://memonary-server-service.herokuapp.com/folders/${this.props.folderId}`)
         .then(res => {
           this.setState({
             wordsToLearn: res.still_to_know_words,
@@ -149,7 +149,7 @@ class WritingCard extends React.Component {
   keepOn = async () => {
     if (await this.Auth.loggedIn()) {
       await this.Auth.fetch(
-        `${process.env.REACT_APP_BASE_URL}/folder/to-know-words/${this.props.folderId}`,
+        `https://memonary-server-service.herokuapp.com/folder/to-know-words/${this.props.folderId}`,
         {
           method: 'PUT',
           headers: {
@@ -177,7 +177,7 @@ class WritingCard extends React.Component {
   handleReset = async () => {
     if (await this.Auth.loggedIn()) {
       this.Auth.fetch(
-        `${process.env.REACT_APP_BASE_URL}/folder/to-know-words/${this.props.folderId}`,
+        `https://memonary-server-service.herokuapp.com/folder/to-know-words/${this.props.folderId}`,
         {
           method: 'PUT',
           headers: {
