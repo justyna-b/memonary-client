@@ -8,7 +8,7 @@ export default class AuthService {
   }
 
   login (username, password) {
-    return this.fetch('http://localhost:3000/users/login', {
+    return this.fetch(`${process.env.REACT_APP_BASE_URL}/users/login`, {
       method: 'POST',
       body: JSON.stringify({
         email: username,

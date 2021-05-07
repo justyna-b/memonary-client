@@ -16,7 +16,7 @@ class HPMainFlow extends React.Component {
 
   async componentDidMount () {
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch('http://localhost:3000/recent')
+      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/recent`)
         .then(res => {
           this.setState({
             folders: res
@@ -35,7 +35,7 @@ class HPMainFlow extends React.Component {
 
   loadMore = async () => {
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch('http://localhost:3000/folders')
+      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/folders`)
         .then(res => {
           this.setState({
             folders: res,

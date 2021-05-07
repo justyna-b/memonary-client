@@ -96,7 +96,7 @@ class FolderEdition extends React.Component {
       delete edited.num
     })
     await this.Auth.fetch(
-      `http://localhost:3000/folder/edit/${this.props.folder_id}`,
+      `${process.env.REACT_APP_BASE_URL}/folder/edit/${this.props.folder_id}`,
       {
         method: 'PUT',
         headers: {

@@ -37,7 +37,7 @@ class Writing extends React.Component {
   getData = async () => {
     if (await this.Auth.loggedIn()) {
       this.Auth.fetch(
-        `http://localhost:3000/folders/${this.props.match.params.folderId}`
+        `${process.env.REACT_APP_BASE_URL}/folders/${this.props.match.params.folderId}`
       )
         .then(res => {
           this.setState({
@@ -74,7 +74,7 @@ class Writing extends React.Component {
   handleReset = async () => {
     if (await this.Auth.loggedIn()) {
       this.Auth.fetch(
-        `http://localhost:3000/folder/to-know-words/${this.props.match.params.folderId}`,
+        `${process.env.REACT_APP_BASE_URL}/folder/to-know-words/${this.props.match.params.folderId}`,
         {
           method: 'PUT',
           headers: {

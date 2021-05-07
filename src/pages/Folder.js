@@ -31,7 +31,7 @@ class Folder extends React.Component {
     this.setState({noEdit: 'no-edit'})
     if (await this.Auth.loggedIn()) {
       this.Auth.fetch(
-        `http://localhost:3000/folders/${this.props.match.params.folderId}`
+        `${process.env.REACT_APP_BASE_URL}/folders/${this.props.match.params.folderId}`
       )
         .then(res => {
           this.setState({

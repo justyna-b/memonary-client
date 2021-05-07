@@ -16,7 +16,7 @@ class LanProgress extends React.Component {
 
   async componentDidMount () {
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch('http://localhost:3000/languages')
+      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/languages`)
         .then(res => {
           this.setState({
             languages: res

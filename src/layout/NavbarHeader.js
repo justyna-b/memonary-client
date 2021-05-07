@@ -17,7 +17,7 @@ class NavbarHeader extends React.Component {
 
   async componentDidMount () {
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch('http://localhost:3000/get/me')
+      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/get/me`)
         .then(res => {
           this.setState({
             username: res.username,
@@ -38,7 +38,7 @@ class NavbarHeader extends React.Component {
   onClickLogOut = event => {
     event.preventDefault()
 
-    this.Auth.fetch('http://localhost:3000/users/logout-all', {
+    this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/users/logout-all`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ const counter = new Subject()
 class Polygon extends React.Component {
   componentDidMount () {
     counter.subscribe(val =>
-      ajax('http://localhost:3000/get-all').subscribe(ajaxResponse => {
+      ajax(`${process.env.REACT_APP_BASE_URL}/get-all`).subscribe(ajaxResponse => {
         let users = ajaxResponse.response
         console.log(users)
         console.log(users.length)
