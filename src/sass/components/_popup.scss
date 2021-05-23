@@ -63,3 +63,34 @@
   font-size: 2rem;
   font-family: $nunito-extra-bold;
 }
+
+.confirm-delete {
+  height: 50%;
+
+  &__text {
+    font-size: 3rem;
+    margin: 5rem 0rem 3rem 0rem;
+    line-height: 3.5rem;
+    @include respond(tab-land) {
+      font-size: 2rem;
+      line-height: 2.2rem;
+      margin: 4rem 0rem 2rem 0rem;
+    }
+  }
+
+  &__button {
+    background-color: $blue-light;
+    text-transform: uppercase;
+    font-family: $nunito-extra-bold;
+    padding: 1.5rem;
+    font-size: 2rem;
+    width: 70%;
+    @include respond(tab-land) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.hide {
+  display: none;
+}

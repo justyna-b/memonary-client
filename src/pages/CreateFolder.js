@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+import Radio from '@material-ui/core/Radio'
 
 import AuthService from '../logic/AuthService'
 import NavbarHeader from '../layout/NavbarHeader'
@@ -22,9 +22,29 @@ class CreateFolder extends React.Component {
       language: '',
       keyboard: [],
       redirect: null,
-      dbId: null
+      dbId: null,
+      folders: []
     }
     this.Auth = new AuthService()
+  }
+
+  async componentDidMount () {
+    if (await this.Auth.loggedIn()) {
+      this.Auth.fetch(`https://memonary-server-service.herokuapp.com/folders`)
+        .then(res => {
+          this.setState({
+            folders: res
+          })
+        })
+        .catch(error => {
+          console.log({ message: 'ERROR ' + error })
+        })
+    } else {
+      this.setState({ auth: false })
+      this.Auth.logout()
+      window.location.reload()
+      window.location.href = '/logon'
+    }
   }
 
   newWordHandler = () => {
@@ -54,7 +74,7 @@ class CreateFolder extends React.Component {
       wordsCopy[pairId] = wordPair
       counter = 1
     } else if (event.target.name === 'wordValue') {
-      let temp = this.state.goalWordsArray.filter(word => {
+      this.state.goalWordsArray.filter(word => {
         if (this.state.folderTitle.length < 1 && emptyInfo.innerHTML != null) {
           emptyInfo.innerHTML = 'Tytul folderu jest wymagany'
         }
@@ -84,18 +104,21 @@ class CreateFolder extends React.Component {
       language = 'polski'
     }
     this.setState({ language: language })
-    await this.Auth.fetch(`https://memonary-server-service.herokuapp.com/folder/create`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('id_token')
-      },
-      body: JSON.stringify({
-        folder_name: this.state.folderTitle,
-        words: this.state.goalWordsArray,
-        language: language
-      })
-    })
+    await this.Auth.fetch(
+      `https://memonary-server-service.herokuapp.com/folder/create`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('id_token')
+        },
+        body: JSON.stringify({
+          folder_name: this.state.folderTitle,
+          words: this.state.goalWordsArray,
+          language: language
+        })
+      }
+    )
       .then(res => this.setState({ dbId: res.folder._id }))
       .then(this.setState({ enableSubmit: false, showInput: false }))
       .then(
@@ -111,14 +134,23 @@ class CreateFolder extends React.Component {
 
   changeTitleHandler = event => {
     event.preventDefault()
+
     let emptyInfo = document.getElementById('emptyInfo')
-    if (emptyInfo.innerHTML != null) {
-      emptyInfo.innerHTML = ''
-      if (this.state.goalWordsArray.length != 0) {
-        this.setState({ enableSubmit: true })
+
+    this.state.folders.map(folder => {
+      if (
+        folder.folder_name.toUpperCase() === event.target.value.toUpperCase()
+      ) {
+        emptyInfo.innerHTML = 'Ten tytuł jest już zajęty'
+        this.setState({ enableSubmit: false })
+      } else if (emptyInfo.innerHTML != null) {
+        emptyInfo.innerHTML = ''
+        if (this.state.goalWordsArray.length != 0) {
+          this.setState({ enableSubmit: true })
+        }
       }
-    }
-    this.setState({ folderTitle: event.target.value })
+      this.setState({ folderTitle: event.target.value })
+    })
   }
 
   render () {
@@ -153,7 +185,7 @@ class CreateFolder extends React.Component {
               <div id='language'>
                 <FormControlLabel
                   control={
-                    <Checkbox
+                    <Radio
                       name='0'
                       className='language-checkbox'
                       color='primary'
@@ -165,7 +197,17 @@ class CreateFolder extends React.Component {
                         this.setState({
                           lan: [true, false, false],
                           language: 0,
-                          keyboard: ['é','è','â','î','ô','ñ','ü','ï','ç']
+                          keyboard: [
+                            'é',
+                            'è',
+                            'â',
+                            'î',
+                            'ô',
+                            'ñ',
+                            'ü',
+                            'ï',
+                            'ç'
+                          ]
                         })
                       }}
                     />
@@ -174,7 +216,7 @@ class CreateFolder extends React.Component {
                 />
                 <FormControlLabel
                   control={
-                    <Checkbox
+                    <Radio
                       name='1'
                       color='primary'
                       checked={
@@ -194,7 +236,7 @@ class CreateFolder extends React.Component {
                 />
                 <FormControlLabel
                   control={
-                    <Checkbox
+                    <Radio
                       name='2'
                       color='red'
                       checked={
@@ -214,7 +256,9 @@ class CreateFolder extends React.Component {
               </div>
               <div>
                 <div id='cancel'>
-                  <a href='/tablica' className='blue-text'>anuluj</a>
+                  <a href='/tablica' className='blue-text'>
+                    anuluj
+                  </a>
                 </div>
                 <button
                   id='save'
@@ -236,28 +280,28 @@ class CreateFolder extends React.Component {
             </div>
             <div id='emptyInfo' />
             <div className=' margin-top' id='words-inputs'>
-             <div className='center ' >
-              {this.state.showInput ? words : null}
-              <button
-                className='button button-submit button-reg'
-                id='new'
-                onClick={this.newWordHandler}
-                disabled={!this.state.enableSubmit}
-              >
-                nowe słówko
-              </button>
-              <div>
+              <div className='center '>
+                {this.state.showInput ? words : null}
                 <button
-                  className='orange button-submit'
-                  id='bottom-save'
-                  onClick={this.submitHandler}
+                  className='button button-submit button-reg'
+                  id='new'
+                  onClick={this.newWordHandler}
                   disabled={!this.state.enableSubmit}
                 >
-                  zapisz
+                  nowe słówko
                 </button>
+                <div>
+                  <button
+                    className='orange button-submit'
+                    id='bottom-save'
+                    onClick={this.submitHandler}
+                    disabled={!this.state.enableSubmit}
+                  >
+                    zapisz
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
           </div>
         </body>
       </div>

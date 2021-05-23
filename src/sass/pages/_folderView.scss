@@ -141,3 +141,14 @@
 .no-edit {
   display: none;
 }
+
+.title-container {
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  display: flex;
+
+  &__icon {
+    cursor: pointer;
+  }
+}

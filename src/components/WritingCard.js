@@ -33,7 +33,9 @@ class WritingCard extends React.Component {
   getWords = async () => {
     this.state.counter = 0
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch(`https://memonary-server-service.herokuapp.com/folders/${this.props.folderId}`)
+      this.Auth.fetch(
+        `https://memonary-server-service.herokuapp.com/folders/${this.props.folderId}`
+      )
         .then(res => {
           this.setState({
             wordsToLearn: res.still_to_know_words,
@@ -130,6 +132,7 @@ class WritingCard extends React.Component {
         }
       }
     }, 1500)
+    this.setState({ placeholder: '' })
   }
 
   addUnknownWord = () => {
@@ -207,7 +210,7 @@ class WritingCard extends React.Component {
     let prompt =
       this.state.accurate.translation.charAt(0) +
       '_'.repeat(this.state.accurate.translation.length - 1)
-    this.setState({ placeholder: prompt })
+    document.getElementById('guess').value = prompt
   }
 
   render () {
@@ -281,6 +284,7 @@ class WritingCard extends React.Component {
               defaultValue=''
               value={this.state.usersTrans}
               placeholder={this.state.placeholder}
+              id='guess'
             />
             <button
               className='writing-card--button button button-submit orange'

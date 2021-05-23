@@ -16,7 +16,7 @@ class HPMainFlow extends React.Component {
 
   async componentDidMount () {
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/recent`)
+      this.Auth.fetch(`https://memonary-server-service.herokuapp.com/recent`)
         .then(res => {
           this.setState({
             folders: res
@@ -35,7 +35,7 @@ class HPMainFlow extends React.Component {
 
   loadMore = async () => {
     if (await this.Auth.loggedIn()) {
-      this.Auth.fetch(`${process.env.REACT_APP_BASE_URL}/folders`)
+      this.Auth.fetch(`https://memonary-server-service.herokuapp.com/folders`)
         .then(res => {
           this.setState({
             folders: res,

@@ -9,6 +9,7 @@ import NavbarHeader from '../layout/NavbarHeader'
 import WordEdit from '../components/WordEdit'
 import LeftNavbarElement from '../components/LeftNavbarElement'
 import FolderEdition from '../components/FolderEdition'
+import DeleteConfirmation from '../components/DeleteConfirmation'
 
 class Folder extends React.Component {
   constructor (props) {
@@ -22,13 +23,15 @@ class Folder extends React.Component {
       editionMode: 'edition',
       language: '',
       keyboard: [],
-      noEdit: null
+      noEdit: null,
+      delete: 1,
+      successDeleteMsg: null
     }
     this.Auth = new AuthService()
   }
 
   async componentDidMount () {
-    this.setState({noEdit: 'no-edit'})
+    this.setState({ noEdit: 'no-edit' })
     if (await this.Auth.loggedIn()) {
       this.Auth.fetch(
         `https://memonary-server-service.herokuapp.com/folders/${this.props.match.params.folderId}`
@@ -95,7 +98,49 @@ class Folder extends React.Component {
     this.setState({ editionMode: 'hide-fish', noEdit: 'edition-mode' })
   }
 
+  accessDelete = () => {
+    const temp = this.state.delete + 1
+    this.setState({
+      delete: temp
+    })
+  }
+
+  deleteConfirm = async () => {
+    if (await this.Auth.loggedIn()) {
+      this.Auth.fetch(
+        `https://memonary-server-service.herokuapp.com/folder/delete/${this.props.match.params.folderId}`,
+        { method: 'DELETE' }
+      )
+        .then(res => {
+          this.setState({
+            successDeleteMsg: res.msg,
+            hideQuestion: 'hide'
+          })
+        })
+        .then(
+          setTimeout(
+            () =>
+              this.setState({
+                redirect: `/tablica`
+              }),
+            2000
+          )
+        )
+        .catch(error => {
+          console.log({ message: 'ERROR ' + error })
+        })
+    } else {
+      this.setState({ auth: false })
+      this.Auth.logout()
+      window.location.reload()
+      window.location.href = '/logon'
+    }
+  }
+
   render () {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />
+    }
     return (
       <div>
         {this.state.auth ? '' : <Redirect to='/logon' />}
@@ -103,6 +148,18 @@ class Folder extends React.Component {
           <NavbarHeader />
         </div>
         <div className='cols-container'>
+          {this.state.delete % 2 === 0 ? (
+            <DeleteConfirmation
+              closeConfirm={this.accessDelete}
+              title={this.props.match.params.folderName.toUpperCase()}
+              deleteConfirm={this.deleteConfirm}
+              msg={this.state.successDeleteMsg}
+              hideQuestion={this.state.hideQuestion}
+              deleteSuccess={this.state.successDeleteMsg}
+            />
+          ) : (
+            ''
+          )}
           <div className='cols-container__col cols-container__col--nav'>
             <div className='nav-home'>
               {this.state.navElements.map(element => (
@@ -118,7 +175,14 @@ class Folder extends React.Component {
           <div className='cols-container__col cols-container__col--flow'>
             <div className={`${this.state.editionMode}`}>
               <div className='folder--title'>
-                {this.props.match.params.folderName}
+                <div className='title-container'>
+                  <div>
+                    {this.props.match.params.folderName}
+                  </div>
+                  <div onClick={this.accessDelete}>
+                    <i className='trash icon title-container__icon'></i>
+                  </div>
+                </div>
               </div>
               <div className='phone-stuff'>
                 <a href={`/pisownia/${this.props.match.params.folderId}`}>
