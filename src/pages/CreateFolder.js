@@ -76,12 +76,16 @@ class CreateFolder extends React.Component {
     } else if (event.target.name === 'wordValue') {
       this.state.goalWordsArray.filter(word => {
         if (this.state.folderTitle.length < 1 && emptyInfo.innerHTML != null) {
-          emptyInfo.innerHTML = 'Tytul folderu jest wymagany'
+          emptyInfo.innerHTML = 'Tytuł folderu jest wymagany'
         }
         if (word.num === pairId) {
           word.translation = event.target.value
           counter = 2
-          if (this.state.folderTitle.length > 0 && word.definition.length > 0) {
+          if (
+            this.state.folderTitle.length > 0 &&
+            this.state.folderTitle !== false &&
+            word.definition.length > 0
+          ) {
             this.setState({
               goalWordsArray: wordsCopy,
               enableSubmit: true
@@ -137,19 +141,20 @@ class CreateFolder extends React.Component {
 
     let emptyInfo = document.getElementById('emptyInfo')
 
+    if (emptyInfo.innerHTML != null && event.target.value.length > 0) {
+      emptyInfo.innerHTML = ''
+      if (this.state.goalWordsArray.length != 0) {
+        this.setState({ enableSubmit: true })
+      }
+    }
+    this.setState({ folderTitle: event.target.value })
     this.state.folders.map(folder => {
       if (
         folder.folder_name.toUpperCase() === event.target.value.toUpperCase()
       ) {
         emptyInfo.innerHTML = 'Ten tytuł jest już zajęty'
-        this.setState({ enableSubmit: false })
-      } else if (emptyInfo.innerHTML != null) {
-        emptyInfo.innerHTML = ''
-        if (this.state.goalWordsArray.length != 0) {
-          this.setState({ enableSubmit: true })
-        }
+        this.setState({ enableSubmit: false, folderTitle: false })
       }
-      this.setState({ folderTitle: event.target.value })
     })
   }
 
